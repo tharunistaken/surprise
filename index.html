@@ -3,42 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Anjali ❤️</title>
+<title>For Anjali</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#111;color:white;text-align:center;overflow:hidden}
-.hero{padding-top:120px}
-button{padding:15px 30px;font-size:20px;border:none;border-radius:12px;background:#ff4d6d;color:white;cursor:pointer}
-.main{display:none;padding-top:60px}
-img{width:260px;border-radius:20px;margin:10px}
-.heart{position:fixed;color:#ff4d6d;animation:float 5s linear infinite}
-@keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-100vh)}}
-#final{display:none;position:fixed;inset:0;background:black;align-items:center;justify-content:center;flex-direction:column}
-#final img{max-width:70%;border-radius:20px}
+body{margin:0;background:#fbd6dc;font-family:sans-serif;text-align:center;overflow:hidden}
+
+#envelope{margin-top:120px;cursor:pointer}
+#letter{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center}
+#card{background:white;padding:30px;border-radius:20px;width:340px}
+
+#photoPage{
+display:none;
+position:fixed;
+inset:0;
+background:#000;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+
+#photoPage img{
+max-width:70%;
+border-radius:20px;
+box-shadow:0 0 40px pink;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:20px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="hero">
-<h1>Tap to open your gift 🎁</h1>
-<button onclick="openSite()">Open</button>
+<h1>My Girl ❤️ Happy Birthday</h1>
+
+<img id="envelope" src="https://i.imgur.com/6RLc3qE.png" width="220" onclick="openLetter()">
+
+<div id="letter">
+<div id="card">
+<h2>Happy Birthday</h2>
+<p>You are the best thing in my life.</p>
+<button onclick="showPhoto()">Open Final</button>
+</div>
 </div>
 
-<div class="main" id="main">
-<h1>Happy Birthday Anjali 🎂</h1>
-<p>This song is only for you.</p>
-
-<img src="img1.jpg">
-<img src="img2.jpg">
-
-<br><br>
-<button onclick="showEnd()">Final Surprise</button>
-</div>
-
-<div id="final">
+<div id="photoPage">
 <img src="her.jpg">
-<h1>I love you ❤️</h1>
+<h2 style="color:white">I love you forever ❤️</h2>
 </div>
 
 <audio id="song">
@@ -46,28 +65,17 @@ img{width:260px;border-radius:20px;margin:10px}
 </audio>
 
 <script>
-function openSite(){
-document.querySelector('.hero').style.display="none";
-document.getElementById("main").style.display="block";
+function openLetter(){
+document.getElementById("letter").style.display="flex";
 document.getElementById("song").play();
-setInterval(heart,300);
 }
 
-function heart(){
-let e=document.createElement("div");
-e.className="heart";
-e.innerHTML="❤️";
-e.style.left=Math.random()*100+"vw";
-e.style.top="100vh";
-e.style.fontSize=Math.random()*30+20+"px";
-document.body.appendChild(e);
-setTimeout(()=>e.remove(),5000);
-}
-
-function showEnd(){
-document.getElementById("final").style.display="flex";
+function showPhoto(){
+document.getElementById("letter").style.display="none";
+document.getElementById("photoPage").style.display="flex";
 }
 </script>
 
 </body>
 </html>
+
