@@ -6,16 +6,69 @@
 <title>For Anjali ❤️</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#111;color:white;text-align:center;overflow:hidden}
-header{padding:20px;background:black;font-size:24px}
-.hero{padding-top:120px}
-button{padding:15px 30px;font-size:20px;border:none;border-radius:12px;background:#ff4d6d;color:white;cursor:pointer}
-.main{display:none;padding-top:60px}
-img{width:260px;border-radius:20px;margin:10px}
-.heart{position:fixed;color:#ff4d6d;animation:float 5s linear infinite}
-@keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-100vh)}}
-#final{display:none;position:fixed;inset:0;background:black;align-items:center;justify-content:center;flex-direction:column}
-#final img{max-width:70%;border-radius:20px}
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+header{
+padding:20px;
+font-size:26px;
+}
+
+.hero{
+padding-top:140px;
+}
+
+button{
+padding:18px 40px;
+font-size:20px;
+border:none;
+border-radius:14px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+#final{
+display:none;
+position:fixed;
+inset:0;
+background:black;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+
+#final img{
+max-width:80%;
+border-radius:25px;
+box-shadow:0 0 50px hotpink;
+animation:zoom 3s forwards;
+}
+
+@keyframes zoom{
+from{transform:scale(.5);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+color:#ff4d6d;
+animation:rise linear forwards;
+}
+
+@keyframes rise{
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
 </style>
 </head>
 
@@ -23,24 +76,13 @@ img{width:260px;border-radius:20px;margin:10px}
 
 <header>For Anjali ❤️</header>
 
-<div class="hero">
+<div class="hero" id="hero">
 <h1>Tap to open your gift 🎁</h1>
-<button onclick="openSite()">Open</button>
-</div>
-
-<div class="main" id="main">
-<h1>Happy Birthday Anjali 🎂</h1>
-<p>This song is only for you.</p>
-
-<img src="asset/img1.jpg">
-<img src="asset/img2.jpg">
-
-<br><br>
-<button onclick="showEnd()">Final Surprise</button>
+<button onclick="start()">Open</button>
 </div>
 
 <div id="final">
-<img src="asset/her.jpg">
+<img src="her.jpg">
 <h1>I love you ❤️</h1>
 </div>
 
@@ -49,31 +91,27 @@ img{width:260px;border-radius:20px;margin:10px}
 </audio>
 
 <script>
-function openSite(){
-document.querySelector('.hero').style.display="none";
-document.getElementById("main").style.display="block";
-document.getElementById("song").play();
-setInterval(heart,300);
-}
-
-function heart(){
-let e=document.createElement("div");
-e.className="heart";
-e.innerHTML="❤️";
-e.style.left=Math.random()*100+"vw";
-e.style.top="100vh";
-e.style.fontSize=Math.random()*30+20+"px";
-document.body.appendChild(e);
-setTimeout(()=>e.remove(),5000);
-}
-
-function showEnd(){
+function start(){
+document.getElementById("hero").style.display="none";
 document.getElementById("final").style.display="flex";
+document.getElementById("song").play();
+
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*25+20)+"px";
+h.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},200);
 }
 </script>
 
 </body>
 </html>
+
 
 
 
