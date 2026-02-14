@@ -1,88 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For You ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anjali ❤️</title>
 
 <style>
-body{
-  margin:0;
-  background:#f7cdd3;
-  font-family:Arial;
-  text-align:center;
-}
-
-/* heading */
-h1{
-  padding-top:40px;
-}
-
-/* popup */
-.popup{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:white;
-  padding:30px;
-  border-radius:15px;
-  box-shadow:0 0 20px rgba(0,0,0,0.3);
-}
-
-button{
-  padding:12px 25px;
-  border:none;
-  background:#ff4d6d;
-  color:white;
-  border-radius:10px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-/* final photo */
-.final{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:black;
-  justify-content:center;
-  align-items:center;
-}
-
-.final img{
-  max-width:70%;
-  max-height:85%;
-  border-radius:20px;
-}
+body{margin:0;font-family:Arial;background:#111;color:white;text-align:center;overflow:hidden}
+.hero{padding-top:120px}
+button{padding:15px 30px;font-size:20px;border:none;border-radius:12px;background:#ff4d6d;color:white;cursor:pointer}
+.main{display:none;padding-top:60px}
+img{width:260px;border-radius:20px;margin:10px}
+.heart{position:fixed;color:#ff4d6d;animation:float 5s linear infinite}
+@keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-100vh)}}
+#final{display:none;position:fixed;inset:0;background:black;align-items:center;justify-content:center;flex-direction:column}
+#final img{max-width:70%;border-radius:20px}
 </style>
 </head>
 
 <body>
 
-<h1>My Girl ❤️ Happy Birthday</h1>
-
-<div class="popup" id="popup">
-  <h2>Happy Birthday</h2>
-  <p>You are the best thing in my life.</p>
-  <button onclick="openFinal()">Open Final</button>
+<div class="hero">
+<h1>Tap to open your gift 🎁</h1>
+<button onclick="openSite()">Open</button>
 </div>
 
-<div class="final" id="final">
-  <img src="her.jpg">
+<div class="main" id="main">
+<h1>Happy Birthday Anjali 🎂</h1>
+<p>This song is only for you.</p>
+
+<img src="img1.jpg">
+<img src="img2.jpg">
+
+<br><br>
+<button onclick="showEnd()">Final Surprise</button>
 </div>
 
-<audio id="song" src="song.mp3"></audio>
+<div id="final">
+<img src="her.jpg">
+<h1>I love you ❤️</h1>
+</div>
+
+<audio id="song">
+<source src="song.mp3">
+</audio>
 
 <script>
-function openFinal(){
-  document.getElementById("popup").style.display="none";
-  document.getElementById("final").style.display="flex";
-  document.getElementById("song").play();
+function openSite(){
+document.querySelector('.hero').style.display="none";
+document.getElementById("main").style.display="block";
+document.getElementById("song").play();
+setInterval(heart,300);
+}
+
+function heart(){
+let e=document.createElement("div");
+e.className="heart";
+e.innerHTML="❤️";
+e.style.left=Math.random()*100+"vw";
+e.style.top="100vh";
+e.style.fontSize=Math.random()*30+20+"px";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),5000);
+}
+
+function showEnd(){
+document.getElementById("final").style.display="flex";
 }
 </script>
 
 </body>
 </html>
+
 
