@@ -8,20 +8,26 @@
 <style>
 body{
 margin:0;
-font-family:Arial;
 background:black;
+font-family:Arial;
 color:white;
 text-align:center;
 overflow:hidden;
 }
 
+/* header */
 header{
 padding:20px;
-font-size:26px;
+font-size:30px;
+letter-spacing:2px;
 }
 
+/* intro screen */
 .hero{
-padding-top:140px;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 }
 
 button{
@@ -32,8 +38,10 @@ border-radius:14px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
+box-shadow:0 0 20px #ff4d6d;
 }
 
+/* final screen */
 #final{
 display:none;
 position:fixed;
@@ -44,18 +52,29 @@ justify-content:center;
 flex-direction:column;
 }
 
+/* photo */
 #final img{
-max-width:80%;
+max-width:75%;
 border-radius:25px;
-box-shadow:0 0 50px hotpink;
-animation:zoom 3s forwards;
+box-shadow:0 0 80px hotpink;
+animation:zoom 2.5s ease forwards;
 }
 
 @keyframes zoom{
-from{transform:scale(.5);opacity:0}
+from{transform:scale(.4);opacity:0}
 to{transform:scale(1);opacity:1}
 }
 
+/* message */
+#msg{
+font-size:26px;
+margin-top:20px;
+width:80%;
+max-width:600px;
+line-height:1.6;
+}
+
+/* hearts */
 .heart{
 position:fixed;
 bottom:-20px;
@@ -66,6 +85,20 @@ animation:rise linear forwards;
 @keyframes rise{
 to{
 transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+/* sparkles */
+.spark{
+position:fixed;
+color:white;
+animation:spark 3s linear forwards;
+}
+
+@keyframes spark{
+to{
+transform:translateY(-100vh);
 opacity:0;
 }
 }
@@ -83,7 +116,7 @@ opacity:0;
 
 <div id="final">
 <img src="her.jpg">
-<h1>I love you ❤️</h1>
+<div id="msg"></div>
 </div>
 
 <audio id="song">
@@ -91,12 +124,59 @@ opacity:0;
 </audio>
 
 <script>
+
+let text = `
+Happy Birthday Anjali ❤️
+
+From the moment you came into my life,
+everything felt different.
+
+You are not just a person,
+you are the calm in my chaos,
+the smile in my worst days,
+the reason I check my phone for no reason.
+
+If beauty had a face,
+it would still be jealous of you.
+
+If love had a name,
+it would probably be yours.
+
+I don’t know what the future holds,
+but I know one thing —
+I want you in it.
+
+You are my favorite notification,
+my favorite thought,
+my favorite person.
+
+I hope today makes you smile
+as much as you make me smile every day.
+
+Happy Birthday, my girl ❤️
+`;
+
+let i=0;
+
 function start(){
 document.getElementById("hero").style.display="none";
 document.getElementById("final").style.display="flex";
 document.getElementById("song").play();
 
-setInterval(()=>{
+typeText();
+setInterval(heart,250);
+setInterval(spark,600);
+}
+
+function typeText(){
+if(i < text.length){
+document.getElementById("msg").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeText,40);
+}
+}
+
+function heart(){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
@@ -105,13 +185,22 @@ h.style.fontSize=(Math.random()*25+20)+"px";
 h.style.animationDuration=(Math.random()*3+3)+"s";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},200);
 }
+
+function spark(){
+let s=document.createElement("div");
+s.className="spark";
+s.innerHTML="✨";
+s.style.left=Math.random()*100+"vw";
+s.style.fontSize=(Math.random()*10+10)+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),3000);
+}
+
 </script>
 
 </body>
 </html>
-
 
 
 
